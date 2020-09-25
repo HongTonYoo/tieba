@@ -17,8 +17,11 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: '3.6'
-      - name: 随机时间
-        uses: actions/setup-python@v1
+      - name: 'Install dependencies'
+        run: python -m pip install --upgrade requests
+      - name: 'Start Sign'
+        env:
+          BDUSS: ${{ secrets.BDUSS }}
         run: |
            random_time=$(($RANDOM % 45))
            echo "等待 ${random_time} 分钟后开始签到"
@@ -26,11 +29,4 @@ jobs:
            do
            echo "倒计时:剩余 $[${random_time}-$i] 分钟"
            sleep 1m
-           done
-
-      - name: 'Install dependencies'
-        run: python -m pip install --upgrade requests
-      - name: 'Start Sign'
-        env:
-          BDUSS: ${{ secrets.BDUSS }}
-        run: python main.py
+           donepython main.py
