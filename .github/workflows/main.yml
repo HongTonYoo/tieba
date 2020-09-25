@@ -29,4 +29,5 @@ jobs:
            do
            echo "倒计时:剩余 $[${random_time}-$i] 分钟"
            sleep 1m
-           donepython main.py
+           done
+           python main.py
